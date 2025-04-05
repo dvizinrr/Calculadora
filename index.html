@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: black;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .calculadora {
+            width: 100%;
+            max-width: 400px;
+            height: 90vh;
+            background-color: black;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .display {
+            width: 100%;
+            height: 100px;
+            background-color: black;
+            color: white;
+            text-align: right;
+            font-size: 2.5em;
+            border: none;
+            outline: none;
+        }
+        .botoes {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+        button {
+            width: 100%;
+            height: 80px;
+            border-radius: 50%;
+            border: none;
+            font-size: 1.8em;
+            cursor: pointer;
+        }
+        .cinza { background-color: #505050; color: white; }
+        .laranja { background-color: #ff9500; color: white; }
+        .preto { background-color: black; color: white; }
+    </style>
+</head>
+<body>
+    <div class="calculadora">
+        <input type="text" class="display" id="display" disabled>
+        <div class="botoes">
+            <button class="cinza" onclick="limpar()">AC</button>
+            <button class="cinza">+/-</button>
+            <button class="cinza">%</button>
+            <button class="laranja" onclick="addOperacao('/')">/</button>
+            <button class="preto" onclick="addNumero(7)">7</button>
+            <button class="preto" onclick="addNumero(8)">8</button>
+            <button class="preto" onclick="addNumero(9)">9</button>
+            <button class="laranja" onclick="addOperacao('*')">*</button>
+            <button class="preto" onclick="addNumero(4)">4</button>
+            <button class="preto" onclick="addNumero(5)">5</button>
+            <button class="preto" onclick="addNumero(6)">6</button>
+            <button class="laranja" onclick="addOperacao('-')">-</button>
+            <button class="preto" onclick="addNumero(1)">1</button>
+            <button class="preto" onclick="addNumero(2)">2</button>
+            <button class="preto" onclick="addNumero(3)">3</button>
+            <button class="laranja" onclick="addOperacao('+')">+</button>
+            <button class="preto" onclick="addNumero(0)" style="grid-column: span 2; height: 80px; border-radius: 40px;">0</button>
+            <button class="preto" onclick="addNumero('.')">.</button>
+            <button class="laranja" onclick="calcular()">=</button>
+        </div>
+    </div>
+    <script>
+        function addNumero(num) {
+            document.getElementById("display").value += num;
+        }
+
+        function addOperacao(op) {
+            document.getElementById("display").value += op;
+        }
+
+        function limpar() {
+            document.getElementById("display").value = "";
+        }
+
+        function calcular() {
+            try {
+                document.getElementById("display").value = eval(document.getElementById("display").value);
+            } catch {
+                document.getElementById("display").value = "Erro";
+            }
+        }
+    </script>
+</body>
+</html>
